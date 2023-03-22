@@ -1,0 +1,43 @@
+<html>
+
+
+    <head>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <!-- <script type="text/javascript" src="js/script.js"></script> -->
+    </head>
+
+    <script type="text/javascript">
+    
+     function exampleFunction() {
+
+
+        $(document).ready(function(){
+            $.ajax({ url: "/home",
+        context: document.body,
+        success: function(){
+           alert("done");
+        }
+    });
+});
+     }
+
+            // ajax({
+            // url: "/home",
+            // type: "GET",
+            // //  context: document.body
+            // data: { csrfmiddlewaretoken: '{{ csrf_token }}', text: text },
+            // success: function callback(response){
+            //    console.log(response);
+            // }       
+            //         });}
+</script>
+
+ 
+
+<body onload="exampleFunction();">
+
+<h1>PROCESSSSINGGGGGG</h1>
+
+
+    </body>
+    </html>
