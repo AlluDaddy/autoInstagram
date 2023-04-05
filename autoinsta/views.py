@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect, HttpRequest
 # import templates
 from django import forms
+from better_profanity import profanity 
 
 class LoginForm(forms.Form):
     usern = forms.CharField(label='usern', max_length=100)
@@ -54,9 +55,15 @@ def home(request):
             print(form.data)
             print(form.data["usern"])
             print(form.data['passw'])
+            # print()
+            # friends_list = ["Instagram User"].append()
+            friends_list = form.data['friends_list'].split(",")
+            friends_list = [i.strip() for i in friends_list]
+            friends_list.append("Instagram User")
+
+            # friends_list = form.data['friends_list'].split(",").append("Instagram User")
+            print(friends_list)
     # profanity-check -https://towardsdatascience.com/build-your-language-filter-with-python-d6502f9c224b
-
-
             options = webdriver.ChromeOptions()
             options.add_experimental_option('excludeSwitches', ['enable-logging'])
             driver = webdriver.Chrome(ChromeDriverManager().install())
@@ -105,8 +112,28 @@ def home(request):
             count = 0
 
             for i in ele:
-                count+=1
-                if count ==3:
+                # count+=1
+                # if count ==3:
+                print("name "+ i.text)
+                if i.text in friends_list:
+                    continue
+
+                i.click()
+                time.sleep(10)    
+                ele_mess = driver.find_elements("xpath","//*[contains(@class, '_aacl _aaco _aacu _aacx _aad9 _aadf')]")
+                data = " "
+                for j in ele_mess:
+                    # WebDriverWait(browser, 20).until(EC.presence_of_element_located((By.CSS_SELECTOR, ".reply-button"))).click()
+
+                    # mes = WebDriverWait(driver, 20).until(EC.presence_of_element_located(j))
+
+                    data+=j.text
+                    # print(data)
+                    time.sleep(0.5)
+
+                x = profanity.contains_profanity(data)
+                if x:
+
                     try:
                         WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.XPATH, '//div[@class="_abm0"]/*[name()="svg"][@aria-label="View Thread Details"]'))).click()
                         time.sleep(2)
@@ -121,18 +148,6 @@ def home(request):
                         time.sleep(2)
                     except:
                         pass
-                i.click()
-                time.sleep(10)    
-                ele_mess = driver.find_elements("xpath","//*[contains(@class, '_aacl _aaco _aacu _aacx _aad9 _aadf')]")
-                data = []
-                for j in ele_mess:
-                    # WebDriverWait(browser, 20).until(EC.presence_of_element_located((By.CSS_SELECTOR, ".reply-button"))).click()
-
-                    # mes = WebDriverWait(driver, 20).until(EC.presence_of_element_located(j))
-
-                    data.append(j.text)
-                    print(data)
-                    time.sleep(0.5)
 
 
             driver.close()
