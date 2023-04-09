@@ -3,25 +3,26 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect, HttpRequest
 # import templates
 from django import forms
-from better_profanity import profanity 
+from better_profanity import profanity
+import time
+from selenium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.common.by import By
+from selenium.common.exceptions import StaleElementReferenceException, NoSuchElementException, TimeoutException, ElementNotVisibleException
+ignored_exceptions=(NoSuchElementException,StaleElementReferenceException, TimeoutException, ElementNotVisibleException)
+
 
 class LoginForm(forms.Form):
     usern = forms.CharField(label='usern', max_length=100)
     passw = forms.CharField(label='passw', max_length=100)
 
 
-import time 
-from selenium import webdriver
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.common.by import By
-
-
 def login(request):
     # if this is a POST request we need to process the form data
     # if request.method == 'POST':
-    
+
         # return redirect('/processing')
     return render(request, "login.html")
 
@@ -60,10 +61,11 @@ def home(request):
             friends_list = form.data['friends_list'].split(",")
             friends_list = [i.strip() for i in friends_list]
             friends_list.append("Instagram User")
+            friends_list.append(",")
 
             # friends_list = form.data['friends_list'].split(",").append("Instagram User")
             print(friends_list)
-    # profanity-check -https://towardsdatascience.com/build-your-language-filter-with-python-d6502f9c224b
+
             options = webdriver.ChromeOptions()
             options.add_experimental_option('excludeSwitches', ['enable-logging'])
             driver = webdriver.Chrome(ChromeDriverManager().install())
@@ -72,9 +74,12 @@ def home(request):
             driver.get("https://www.instagram.com/")
             driver.maximize_window()
             time.sleep(6)
+# autoinsta_123
+# autoinsta_123!
+
             driver.find_element("name", "username").send_keys(form.data["usern"])
             driver.find_element("name", "password").send_keys(form.data['passw'])
-            ele = driver.find_element("xpath",'//*[@id="loginForm"]/div/div[3]/button/div')
+            ele = driver.find_element("xpath",'//*[@id="loginForm"]/div/div/button/div')
             ele.click()
             time.sleep(5)
             try:
@@ -114,20 +119,33 @@ def home(request):
             for i in ele:
                 # count+=1
                 # if count ==3:
+                time.sleep(1)
+                try:
+                    WebDriverWait(driver, 50,ignored_exceptions=ignored_exceptions).until(EC.element_to_be_clickable(i) or EC.element_to_be_selected(i))
+                    print(i.text)
+                except:
+                    pass 
+                if i.is_displayed and i.is_enabled:
+                    name = i.text
                 print("name "+ i.text)
-                if i.text in friends_list:
+                if name in friends_list:
                     continue
-
-                i.click()
+                time.sleep(1)
+                if i.is_enabled:
+                    i.click()
                 time.sleep(10)    
                 ele_mess = driver.find_elements("xpath","//*[contains(@class, '_aacl _aaco _aacu _aacx _aad9 _aadf')]")
                 data = " "
                 for j in ele_mess:
+                    time.sleep(0.5)
+
                     # WebDriverWait(browser, 20).until(EC.presence_of_element_located((By.CSS_SELECTOR, ".reply-button"))).click()
 
                     # mes = WebDriverWait(driver, 20).until(EC.presence_of_element_located(j))
-
-                    data+=j.text
+                    # b = WebDriverWait(driver, 30).until(EC.presence_of_element_located(j))
+                    if j.is_displayed:
+                        WebDriverWait(driver, 30,ignored_exceptions=ignored_exceptions).until(EC.element_to_be_clickable(j))
+                        data+=j.text
                     # print(data)
                     time.sleep(0.5)
 

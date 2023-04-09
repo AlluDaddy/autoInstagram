@@ -15,8 +15,8 @@ class Migration(migrations.Migration):
             name='Login',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('question_text', models.CharField(max_length=200)),
-                ('pub_date', models.CharField(max_length=200)),
+                ('pass', models.CharField(max_length=200)),
+                ('exception', models.CharField(max_length=200)),
             ],
         ),
     ]
