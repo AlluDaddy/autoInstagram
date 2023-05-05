@@ -1,5 +1,675 @@
 <html>
+<head>
+    <style>
+    body{
+        background: #FFEFE9;
+      padding-left:100px;
+      }
+      
+      .conf0{fill:#FC6394;}
+      .conf1{fill:#EF3C8A;}
+      .conf2{fill:#5ADAEA;}
+      .conf3{fill:#974CBE;}
+      .conf4{fill:#3CBECD;}
+      .conf5{fill:#813BBE;}
+      .conf6{fill:#F9B732;}
+      .conf7{display:none;fill:none;stroke:#000000;stroke-miterlimit:10;}
+      .conf8{fill:none;stroke:#F9B732;stroke-width:9;stroke-linecap:round;stroke-miterlimit:10;}
+      
+      
+      .confetti-cone{
+        transform-origin: 200px 50px;
+        animation:confetti-cone1 1.2s ease infinite;
+      }
+      @keyframes confetti-cone1{
+      0%{
+         transform:translate(40px, 95px)  rotate(45deg) scale(1, 1);
+      }
+      15%{
+         transform:translate(10px, 145px)  rotate(45deg) scale(1.1, 0.85);
+      
+      }
+      100%{
+        transform:translate(40px, 105px)  rotate(45deg) scale(1, 1);
+      }
+        }
+      
+      #yellow-strip {
+        fill:none;
+        stroke:#F9B732;
+        stroke-width:9;
+        stroke-linecap:round;
+        stroke-miterlimit:10;
+        animation: confdash 1.2s ease infinite;
+      }
+      
+      
+      @keyframes confdash {
+      0%{
+        stroke-dasharray:1000;
+        stroke-dashoffset:500;
+        transform:translate(-30px, 30px);
+        opacity:0;
+      }
+      2%{
+        stroke-dasharray:1000;
+        stroke-dashoffset:500;
+        transform:translate(-30px, 30px);
+        opacity:0;
+      }
+      35%{
+      stroke-dasharray:1000;
+      stroke-dashoffset:900;
+      transform:translate(-2px, 0px);
+      opacity:1;
+      }
+      
+      85%{
+        stroke-dasharray:1000;
+        stroke-dashoffset:1000;
+        transform:translate(1px, -5px);
+        opacity:1;
+      }
+        90%{
+        stroke-dashoffset:1000;
+         stroke-dashoffset:1000;
+        transform:translate(2px, -8px);
+        opacity:0;
+      }
+        100%{
+        stroke-dashoffset:1000;
+         stroke-dashoffset:500;
+        transform:translate(2px, -8px);
+        opacity:0;
+      }
+      }
+      
+      
+      
+      #a2{
+        transform-origin: 310.9px 241px;
+        animation: confa 1.2s ease-out infinite;
+      }
+      
+      #a1
+      {transform-origin: 276px 246px;
+        animation: confa 1.2s ease-out infinite;
+      }
+      
+      @keyframes confa {
+      0%{
+        opacity:0;
+        transform: translate(-30px, 20px) rotate(0);
+      }
+      15%{
+        opacity:1;
+        transform: translate(25px, -10px) rotate(60deg);
+      }
+      80%{
+        opacity:1;
+        transform: translate(33px, -18px) rotate(180deg);
+      }
+      100%{
+        opacity:0;
+        transform: translate(37px, -23px) scale(0.5)rotate(230deg);
+      }
+      }
+      
+      
+      #b1{
+        transform-origin: 195.2px 232.6px;
+        animation: confb 1.2s ease-out infinite;
+      }
+      
+      #b2{
+        transform-origin: 230.8px 219.8px;
+        animation: confb 1.2s ease-out infinite;
+      }
+      #b3 {transform-origin: 222.8px 190.6px;
+        animation: confb 1.2s ease-out infinite;
+      }
+      
+      #b4 {transform-origin: 262px 188.5px;
+        animation: confb 1.2s ease-out infinite;
+      }
+      
+      #b5 {transform-origin: 282.3px 170.6px;
+        animation: confb 1.2s ease-out infinite;
+      }
+      
+      
+      @keyframes confb {
+      0%{
+        opacity:0;
+        transform: translate(-30px, 20px) rotate(0);
+      }
+      12%{
+        opacity:1;
+        transform: translate(25px, -10px) rotate(60deg);
+      }
+      76%{
+        opacity:1;
+        transform: translate(33px, -18px) rotate(180deg);
+      }
+      100%{
+        opacity:0;
+        transform: translate(37px, -23px) scale(0.5) rotate(240deg);
+      }
+      }
+      
+      #c1 {transform-origin: 174.8px 183.4px;
+        animation: confc 1.2s ease-out infinite;
+      }
+      #c2{
+        transform-origin: 178.9px 156.2px;
+        animation: confc 1.2s ease-out infinite;
+      }
+      
+      #c3{
+        transform-origin: 206.7px 140px;
+        animation: confc 1.2s ease-out infinite;
+      }
+      
+      #c4{
+        transform-origin: 213.5px 120.2px;
+        animation: confc 1.2s ease-out infinite;
+      }
+      
+      @keyframes confc {
+      0%{
+        opacity:0.7;
+        transform: translate(-30px, 20px) rotate(0);
+      }
+      18%{
+        opacity:1;
+        transform: translate(5px, -10px) rotate(60deg);
+      }
+      76%{
+        opacity:1;
+        transform: translate(13px, -18px) rotate(180deg);
+      }
+      100%{
+        opacity:0;
+        transform: translate(17px, -23px) scale(0.5) rotate(230deg);
+      }
+      }
+      
+      #d1{
+        transform-origin: 127px 176px;
+        animation: confd 1.2s ease-out infinite;
+      }
+      #d2 {transform-origin: 133px 118px;
+        animation: confd 1.2s ease-out infinite;
+      }
+      #d3{ transform-origin: 152px 100px;
+        animation: confd 1.2s ease-out infinite;
+      }
+      
+      @keyframes confd {
+      0%{
+        opacity:0.7;
+        transform: translate(-20px, 20px) rotate(0);
+      }
+      18%{
+        opacity:1;
+        transform: translate(-5px, -10px) rotate(60deg);
+      }
+      76%{
+        opacity:1;
+        transform: translate(-8px, -18px) rotate(180deg);
+      }
+      100%{
+        opacity:0;
+        transform: translate(-10px, -23px) scale(0.5) rotate(230deg);
+      }
+      }
+
+    svg{
+       /* position: relative; */
+       text-align: right;
+       margin-top: 0%; 
+    }
+
+    #confetti{
+  /* background: #000; */
+  height: 100%;
+  left: 0px;
+  position: relative;
+  top: 0px;
+  width: 100%;
+  z-index: -1;
+}
+
+      </style>
+
+
+      <script  type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.js">
+        $(document).ready(function() {
+    var frameRate = 30;
+    var dt = 1.0 / frameRate;
+    var DEG_TO_RAD = Math.PI / 180;
+    var RAD_TO_DEG = 180 / Math.PI;
+    var colors = [
+        ["#df0049", "#660671"],
+        ["#00e857", "#005291"],
+        ["#2bebbc", "#05798a"],
+        ["#ffd200", "#b06c00"]
+    ];
+
+    function Vector2(_x, _y) {
+        this.x = _x, this.y = _y;
+        this.Length = function() {
+            return Math.sqrt(this.SqrLength());
+        }
+        this.SqrLength = function() {
+            return this.x * this.x + this.y * this.y;
+        }
+        this.Equals = function(_vec0, _vec1) {
+            return _vec0.x == _vec1.x && _vec0.y == _vec1.y;
+        }
+        this.Add = function(_vec) {
+            this.x += _vec.x;
+            this.y += _vec.y;
+        }
+        this.Sub = function(_vec) {
+            this.x -= _vec.x;
+            this.y -= _vec.y;
+        }
+        this.Div = function(_f) {
+            this.x /= _f;
+            this.y /= _f;
+        }
+        this.Mul = function(_f) {
+            this.x *= _f;
+            this.y *= _f;
+        }
+        this.Normalize = function() {
+            var sqrLen = this.SqrLength();
+            if (sqrLen != 0) {
+                var factor = 1.0 / Math.sqrt(sqrLen);
+                this.x *= factor;
+                this.y *= factor;
+            }
+        }
+        this.Normalized = function() {
+            var sqrLen = this.SqrLength();
+            if (sqrLen != 0) {
+                var factor = 1.0 / Math.sqrt(sqrLen);
+                return new Vector2(this.x * factor, this.y * factor);
+            }
+            return new Vector2(0, 0);
+        }
+    }
+    Vector2.Lerp = function(_vec0, _vec1, _t) {
+        return new Vector2((_vec1.x - _vec0.x) * _t + _vec0.x, (_vec1.y - _vec0.y) * _t + _vec0.y);
+    }
+    Vector2.Distance = function(_vec0, _vec1) {
+        return Math.sqrt(Vector2.SqrDistance(_vec0, _vec1));
+    }
+    Vector2.SqrDistance = function(_vec0, _vec1) {
+        var x = _vec0.x - _vec1.x;
+        var y = _vec0.y - _vec1.y;
+        return (x * x + y * y + z * z);
+    }
+    Vector2.Scale = function(_vec0, _vec1) {
+        return new Vector2(_vec0.x * _vec1.x, _vec0.y * _vec1.y);
+    }
+    Vector2.Min = function(_vec0, _vec1) {
+        return new Vector2(Math.min(_vec0.x, _vec1.x), Math.min(_vec0.y, _vec1.y));
+    }
+    Vector2.Max = function(_vec0, _vec1) {
+        return new Vector2(Math.max(_vec0.x, _vec1.x), Math.max(_vec0.y, _vec1.y));
+    }
+    Vector2.ClampMagnitude = function(_vec0, _len) {
+        var vecNorm = _vec0.Normalized;
+        return new Vector2(vecNorm.x * _len, vecNorm.y * _len);
+    }
+    Vector2.Sub = function(_vec0, _vec1) {
+        return new Vector2(_vec0.x - _vec1.x, _vec0.y - _vec1.y, _vec0.z - _vec1.z);
+    }
+
+    function EulerMass(_x, _y, _mass, _drag) {
+        this.position = new Vector2(_x, _y);
+        this.mass = _mass;
+        this.drag = _drag;
+        this.force = new Vector2(0, 0);
+        this.velocity = new Vector2(0, 0);
+        this.AddForce = function(_f) {
+            this.force.Add(_f);
+        }
+        this.Integrate = function(_dt) {
+            var acc = this.CurrentForce(this.position);
+            acc.Div(this.mass);
+            var posDelta = new Vector2(this.velocity.x, this.velocity.y);
+            posDelta.Mul(_dt);
+            this.position.Add(posDelta);
+            acc.Mul(_dt);
+            this.velocity.Add(acc);
+            this.force = new Vector2(0, 0);
+        }
+        this.CurrentForce = function(_pos, _vel) {
+            var totalForce = new Vector2(this.force.x, this.force.y);
+            var speed = this.velocity.Length();
+            var dragVel = new Vector2(this.velocity.x, this.velocity.y);
+            dragVel.Mul(this.drag * this.mass * speed);
+            totalForce.Sub(dragVel);
+            return totalForce;
+        }
+    }
+
+    function ConfettiPaper(_x, _y) {
+        this.pos = new Vector2(_x, _y);
+        this.rotationSpeed = Math.random() * 600 + 800;
+        this.angle = DEG_TO_RAD * Math.random() * 360;
+        this.rotation = DEG_TO_RAD * Math.random() * 360;
+        this.cosA = 1.0;
+        this.size = 5.0;
+        this.oscillationSpeed = Math.random() * 1.5 + 0.5;
+        this.xSpeed = 40.0;
+        this.ySpeed = Math.random() * 60 + 50.0;
+        this.corners = new Array();
+        this.time = Math.random();
+        var ci = Math.round(Math.random() * (colors.length - 1));
+        this.frontColor = colors[ci][0];
+        this.backColor = colors[ci][1];
+        for (var i = 0; i < 4; i++) {
+            var dx = Math.cos(this.angle + DEG_TO_RAD * (i * 90 + 45));
+            var dy = Math.sin(this.angle + DEG_TO_RAD * (i * 90 + 45));
+            this.corners[i] = new Vector2(dx, dy);
+        }
+        this.Update = function(_dt) {
+            this.time += _dt;
+            this.rotation += this.rotationSpeed * _dt;
+            this.cosA = Math.cos(DEG_TO_RAD * this.rotation);
+            this.pos.x += Math.cos(this.time * this.oscillationSpeed) * this.xSpeed * _dt
+            this.pos.y += this.ySpeed * _dt;
+            if (this.pos.y > ConfettiPaper.bounds.y) {
+                this.pos.x = Math.random() * ConfettiPaper.bounds.x;
+                this.pos.y = 0;
+            }
+        }
+        this.Draw = function(_g) {
+            if (this.cosA > 0) {
+                _g.fillStyle = this.frontColor;
+            } else {
+                _g.fillStyle = this.backColor;
+            }
+            _g.beginPath();
+            _g.moveTo(this.pos.x + this.corners[0].x * this.size, this.pos.y + this.corners[0].y * this.size * this.cosA);
+            for (var i = 1; i < 4; i++) {
+                _g.lineTo(this.pos.x + this.corners[i].x * this.size, this.pos.y + this.corners[i].y * this.size * this.cosA);
+            }
+            _g.closePath();
+            _g.fill();
+        }
+    }
+    ConfettiPaper.bounds = new Vector2(0, 0);
+
+    function ConfettiRibbon(_x, _y, _count, _dist, _thickness, _angle, _mass, _drag) {
+        this.particleDist = _dist;
+        this.particleCount = _count;
+        this.particleMass = _mass;
+        this.particleDrag = _drag;
+        this.particles = new Array();
+        var ci = Math.round(Math.random() * (colors.length - 1));
+        this.frontColor = colors[ci][0];
+        this.backColor = colors[ci][1];
+        this.xOff = Math.cos(DEG_TO_RAD * _angle) * _thickness;
+        this.yOff = Math.sin(DEG_TO_RAD * _angle) * _thickness;
+        this.position = new Vector2(_x, _y);
+        this.prevPosition = new Vector2(_x, _y);
+        this.velocityInherit = Math.random() * 2 + 4;
+        this.time = Math.random() * 100;
+        this.oscillationSpeed = Math.random() * 2 + 2;
+        this.oscillationDistance = Math.random() * 40 + 40;
+        this.ySpeed = Math.random() * 40 + 80;
+        for (var i = 0; i < this.particleCount; i++) {
+            this.particles[i] = new EulerMass(_x, _y - i * this.particleDist, this.particleMass, this.particleDrag);
+        }
+        this.Update = function(_dt) {
+            var i = 0;
+            this.time += _dt * this.oscillationSpeed;
+            this.position.y += this.ySpeed * _dt;
+            this.position.x += Math.cos(this.time) * this.oscillationDistance * _dt;
+            this.particles[0].position = this.position;
+            var dX = this.prevPosition.x - this.position.x;
+            var dY = this.prevPosition.y - this.position.y;
+            var delta = Math.sqrt(dX * dX + dY * dY);
+            this.prevPosition = new Vector2(this.position.x, this.position.y);
+            for (i = 1; i < this.particleCount; i++) {
+                var dirP = Vector2.Sub(this.particles[i - 1].position, this.particles[i].position);
+                dirP.Normalize();
+                dirP.Mul((delta / _dt) * this.velocityInherit);
+                this.particles[i].AddForce(dirP);
+            }
+            for (i = 1; i < this.particleCount; i++) {
+                this.particles[i].Integrate(_dt);
+            }
+            for (i = 1; i < this.particleCount; i++) {
+                var rp2 = new Vector2(this.particles[i].position.x, this.particles[i].position.y);
+                rp2.Sub(this.particles[i - 1].position);
+                rp2.Normalize();
+                rp2.Mul(this.particleDist);
+                rp2.Add(this.particles[i - 1].position);
+                this.particles[i].position = rp2;
+            }
+            if (this.position.y > ConfettiRibbon.bounds.y + this.particleDist * this.particleCount) {
+                this.Reset();
+            }
+        }
+        this.Reset = function() {
+            this.position.y = -Math.random() * ConfettiRibbon.bounds.y;
+            this.position.x = Math.random() * ConfettiRibbon.bounds.x;
+            this.prevPosition = new Vector2(this.position.x, this.position.y);
+            this.velocityInherit = Math.random() * 2 + 4;
+            this.time = Math.random() * 100;
+            this.oscillationSpeed = Math.random() * 2.0 + 1.5;
+            this.oscillationDistance = Math.random() * 40 + 40;
+            this.ySpeed = Math.random() * 40 + 80;
+            var ci = Math.round(Math.random() * (colors.length - 1));
+            this.frontColor = colors[ci][0];
+            this.backColor = colors[ci][1];
+            this.particles = new Array();
+            for (var i = 0; i < this.particleCount; i++) {
+                this.particles[i] = new EulerMass(this.position.x, this.position.y - i * this.particleDist, this.particleMass, this.particleDrag);
+            }
+        }
+        this.Draw = function(_g) {
+            for (var i = 0; i < this.particleCount - 1; i++) {
+                var p0 = new Vector2(this.particles[i].position.x + this.xOff, this.particles[i].position.y + this.yOff);
+                var p1 = new Vector2(this.particles[i + 1].position.x + this.xOff, this.particles[i + 1].position.y + this.yOff);
+                if (this.Side(this.particles[i].position.x, this.particles[i].position.y, this.particles[i + 1].position.x, this.particles[i + 1].position.y, p1.x, p1.y) < 0) {
+                    _g.fillStyle = this.frontColor;
+                    _g.strokeStyle = this.frontColor;
+                } else {
+                    _g.fillStyle = this.backColor;
+                    _g.strokeStyle = this.backColor;
+                }
+                if (i == 0) {
+                    _g.beginPath();
+                    _g.moveTo(this.particles[i].position.x, this.particles[i].position.y);
+                    _g.lineTo(this.particles[i + 1].position.x, this.particles[i + 1].position.y);
+                    _g.lineTo((this.particles[i + 1].position.x + p1.x) * 0.5, (this.particles[i + 1].position.y + p1.y) * 0.5);
+                    _g.closePath();
+                    _g.stroke();
+                    _g.fill();
+                    _g.beginPath();
+                    _g.moveTo(p1.x, p1.y);
+                    _g.lineTo(p0.x, p0.y);
+                    _g.lineTo((this.particles[i + 1].position.x + p1.x) * 0.5, (this.particles[i + 1].position.y + p1.y) * 0.5);
+                    _g.closePath();
+                    _g.stroke();
+                    _g.fill();
+                } else if (i == this.particleCount - 2) {
+                    _g.beginPath();
+                    _g.moveTo(this.particles[i].position.x, this.particles[i].position.y);
+                    _g.lineTo(this.particles[i + 1].position.x, this.particles[i + 1].position.y);
+                    _g.lineTo((this.particles[i].position.x + p0.x) * 0.5, (this.particles[i].position.y + p0.y) * 0.5);
+                    _g.closePath();
+                    _g.stroke();
+                    _g.fill();
+                    _g.beginPath();
+                    _g.moveTo(p1.x, p1.y);
+                    _g.lineTo(p0.x, p0.y);
+                    _g.lineTo((this.particles[i].position.x + p0.x) * 0.5, (this.particles[i].position.y + p0.y) * 0.5);
+                    _g.closePath();
+                    _g.stroke();
+                    _g.fill();
+                } else {
+                    _g.beginPath();
+                    _g.moveTo(this.particles[i].position.x, this.particles[i].position.y);
+                    _g.lineTo(this.particles[i + 1].position.x, this.particles[i + 1].position.y);
+                    _g.lineTo(p1.x, p1.y);
+                    _g.lineTo(p0.x, p0.y);
+                    _g.closePath();
+                    _g.stroke();
+                    _g.fill();
+                }
+            }
+        }
+        this.Side = function(x1, y1, x2, y2, x3, y3) {
+            return ((x1 - x2) * (y3 - y2) - (y1 - y2) * (x3 - x2));
+        }
+    }
+    ConfettiRibbon.bounds = new Vector2(0, 0);
+    confetti = {};
+    confetti.Context = function(parent) {
+        var i = 0;
+        var canvasParent = document.getElementById(parent);
+        var canvas = document.createElement('canvas');
+        canvas.width = canvasParent.offsetWidth;
+        canvas.height = canvasParent.offsetHeight;
+        canvasParent.appendChild(canvas);
+        var context = canvas.getContext('2d');
+        var interval = null;
+        var confettiRibbonCount = 7;
+        var rpCount = 30;
+        var rpDist = 8.0;
+        var rpThick = 8.0;
+        var confettiRibbons = new Array();
+        ConfettiRibbon.bounds = new Vector2(canvas.width, canvas.height);
+        for (i = 0; i < confettiRibbonCount; i++) {
+            confettiRibbons[i] = new ConfettiRibbon(Math.random() * canvas.width, -Math.random() * canvas.height * 2, rpCount, rpDist, rpThick, 45, 1, 0.05);
+        }
+        var confettiPaperCount = 25;
+        var confettiPapers = new Array();
+        ConfettiPaper.bounds = new Vector2(canvas.width, canvas.height);
+        for (i = 0; i < confettiPaperCount; i++) {
+            confettiPapers[i] = new ConfettiPaper(Math.random() * canvas.width, Math.random() * canvas.height);
+        }
+        this.resize = function() {
+            canvas.width = canvasParent.offsetWidth;
+            canvas.height = canvasParent.offsetHeight;
+            ConfettiPaper.bounds = new Vector2(canvas.width, canvas.height);
+            ConfettiRibbon.bounds = new Vector2(canvas.width, canvas.height);
+        }
+        this.start = function() {
+            this.stop()
+            var context = this
+            this.interval = setInterval(function() {
+                confetti.update();
+            }, 1000.0 / frameRate)
+        }
+        this.stop = function() {
+            clearInterval(this.interval);
+        }
+        this.update = function() {
+            var i = 0;
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            for (i = 0; i < confettiPaperCount; i++) {
+                confettiPapers[i].Update(dt);
+                confettiPapers[i].Draw(context);
+            }
+            for (i = 0; i < confettiRibbonCount; i++) {
+                confettiRibbons[i].Update(dt);
+                confettiRibbons[i].Draw(context);
+            }
+        }
+    }
+    var confetti = new confetti.Context('confetti');
+    confetti.start();
+    $(window).resize(function() {
+        confetti.resize();
+    });
+});
+        </script>
+
+</head>
+
     <body>
-        <h1 style = "color:red">SUCCESSFUL</h1>
+        <!--
+concept:
+Part of the social series
+colorful celebrating confetti
+technique
+# stroke animation
+# set transform-origin with exact x, y
+-->   
+
+    
+<h1 style="color: green; font-size: 400%; margin-left: 40%;">Success 😃</h1>
+
+
+<p style="color:#000000; font-size:130% ;">These are the blocked username:-</p>
+<p style="color: red; font-weight: 300;">Abhiskek Chintu</p>
+<p style="color:red;  font-weight: 300;">Praveen Allu</p>
+
+<svg style="width: 80%; height:80%;" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+viewBox="0 0 800 800" style="enable-background:new 0 0 800 800;" xml:space="preserve">
+<g class="confetti-cone">
+  <path class="conf0" d="M131.5,172.6L196,343c2.3,6.1,11,6.1,13.4,0l65.5-170.7L131.5,172.6z"/>
+  <path class="conf1" d="M131.5,172.6L196,343c2.3,6.1,11,6.1,13.4,0l6.7-17.5l-53.6-152.9L131.5,172.6z"/>
+
+   <path class="conf2" d="M274.2,184.2c-1.8,1.8-4.2,2.9-7,2.9l-129.5,0.4c-5.4,0-9.8-4.4-9.8-9.8c0-5.4,4.4-9.8,9.9-9.9l129.5-0.4
+     c5.4,0,9.8,4.4,9.8,9.8C277,180,275.9,182.5,274.2,184.2z"/>
+   <polygon class="conf3" points="231.5,285.4 174.2,285.5 143.8,205.1 262.7,204.7      "/>
+   <path class="conf4" d="M166.3,187.4l-28.6,0.1c-5.4,0-9.8-4.4-9.8-9.8c0-5.4,4.4-9.8,9.9-9.9l24.1-0.1c0,0-2.6,5-1.3,10.6
+     C161.8,183.7,166.3,187.4,166.3,187.4z"/>
+   <ellipse transform="matrix(0.7071 -0.7071 0.7071 0.7071 -89.8523 231.0278)" class="conf2" cx="233.9" cy="224" rx="5.6" ry="5.6"/>
+   <path class="conf5" d="M143.8,205.1l5.4,14.3c6.8-2.1,14.4-0.5,19.7,4.8c7.7,7.7,7.6,20.1-0.1,27.8c-1.7,1.7-3.7,3-5.8,4l11.1,29.4
+     l27.7,0l-28-80.5L143.8,205.1z"/>
+   <path class="conf2" d="M169,224.2c-5.3-5.3-13-6.9-19.7-4.8l13.9,36.7c2.1-1,4.1-2.3,5.8-4C176.6,244.4,176.6,231.9,169,224.2z"/>
+   <ellipse transform="matrix(0.7071 -0.7071 0.7071 0.7071 -119.0946 221.1253)" class="conf6" cx="207.4" cy="254.3" rx="11.3" ry="11.2"/>
+</g>
+
+ <rect x="113.7" y="135.7" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -99.5348 209.1582)" class="conf7" width="178" height="178"/>
+<line class="conf7" x1="76.8" y1="224.7" x2="328.6" y2="224.7"/>
+<polyline class="conf7" points="202.7,350.6 202.7,167.5 202.7,98.9  "/>
+<!-- here comes the confettis-->
+
+ <circle class="conf2" id="b1" cx="195.2" cy="232.6" r="5.1"/>
+ <circle class="conf0" id="b2" cx="230.8" cy="219.8" r="5.4"/>
+ <circle class="conf0" id="c2" cx="178.9" cy="160.4" r="4.2"/>
+ <circle class="conf6" id="d2"cx="132.8" cy="123.6" r="5.4"/>
+ <circle class="conf0" id="d3" cx="151.9" cy="105.1" r="5.4"/>
+
+ <path class="conf0" id="d1" d="M129.9,176.1l-5.7,1.3c-1.6,0.4-2.2,2.3-1.1,3.5l3.8,4.2c1.1,1.2,3.1,0.8,3.6-0.7l1.9-5.5
+   C132.9,177.3,131.5,175.7,129.9,176.1z"/>
+ <path class="conf6" id="b5" d="M284.5,170.7l-5.4,1.2c-1.5,0.3-2.1,2.2-1,3.3l3.6,3.9c1,1.1,2.9,0.8,3.4-0.7l1.8-5.2
+   C287.4,171.9,286.1,170.4,284.5,170.7z"/>
+ <circle class="conf6" id="c3"cx="206.7" cy="144.4" r="4.5"/>
+ <path class="conf2" id="c1" d="M176.4,192.3h-3.2c-1.6,0-2.9-1.3-2.9-2.9v-3.2c0-1.6,1.3-2.9,2.9-2.9h3.2c1.6,0,2.9,1.3,2.9,2.9v3.2
+   C179.3,191,178,192.3,176.4,192.3z"/>
+ <path class="conf2" id="b4" d="M263.7,197.4h-3.2c-1.6,0-2.9-1.3-2.9-2.9v-3.2c0-1.6,1.3-2.9,2.9-2.9h3.2c1.6,0,2.9,1.3,2.9,2.9v3.2
+   C266.5,196.1,265.2,197.4,263.7,197.4z"/>
+ <!-- yellow-strip-1-->
+  <path id="yellow-strip" d="M179.7,102.4c0,0,6.6,15.3-2.3,25c-8.9,9.7-24.5,9.7-29.7,15.6c-5.2,5.9-0.7,18.6,3.7,28.2
+   c4.5,9.7,2.2,23-10.4,28.2"/>
+ <path class="conf8" id="yellow-strip" d="M252.2,156.1c0,0-16.9-3.5-28.8,2.4c-11.9,5.9-14.9,17.8-16.4,29c-1.5,11.1-4.3,28.8-31.5,33.4"/>
+ <path class="conf0" id="a1" d="M277.5,254.8h-3.2c-1.6,0-2.9-1.3-2.9-2.9v-3.2c0-1.6,1.3-2.9,2.9-2.9h3.2c1.6,0,2.9,1.3,2.9,2.9v3.2
+   C280.4,253.5,279.1,254.8,277.5,254.8z"/>
+ <path class="conf3" id="c4" d="M215.2,121.3L215.2,121.3c0.3,0.6,0.8,1,1.5,1.1l0,0c1.6,0.2,2.2,2.2,1.1,3.3l0,0c-0.5,0.4-0.7,1.1-0.6,1.7v0
+   c0.3,1.6-1.4,2.8-2.8,2l0,0c-0.6-0.3-1.2-0.3-1.8,0h0c-1.4,0.7-3.1-0.5-2.8-2v0c0.1-0.6-0.1-1.3-0.6-1.7l0,0
+   c-1.1-1.1-0.5-3.1,1.1-3.3l0,0c0.6-0.1,1.2-0.5,1.5-1.1v0C212.5,119.8,214.5,119.8,215.2,121.3z"/>
+ <path class="conf3" id="b3" d="M224.5,191.7L224.5,191.7c0.3,0.6,0.8,1,1.5,1.1l0,0c1.6,0.2,2.2,2.2,1.1,3.3v0c-0.5,0.4-0.7,1.1-0.6,1.7l0,0
+   c0.3,1.6-1.4,2.8-2.8,2h0c-0.6-0.3-1.2-0.3-1.8,0l0,0c-1.4,0.7-3.1-0.5-2.8-2l0,0c0.1-0.6-0.1-1.3-0.6-1.7v0
+   c-1.1-1.1-0.5-3.1,1.1-3.3l0,0c0.6-0.1,1.2-0.5,1.5-1.1l0,0C221.7,190.2,223.8,190.2,224.5,191.7z"/>
+ <path class="conf3" id="a2" d="M312.6,242.1L312.6,242.1c0.3,0.6,0.8,1,1.5,1.1l0,0c1.6,0.2,2.2,2.2,1.1,3.3l0,0c-0.5,0.4-0.7,1.1-0.6,1.7v0
+   c0.3,1.6-1.4,2.8-2.8,2l0,0c-0.6-0.3-1.2-0.3-1.8,0h0c-1.4,0.7-3.1-0.5-2.8-2v0c0.1-0.6-0.1-1.3-0.6-1.7l0,0
+   c-1.1-1.1-0.5-3.1,1.1-3.3l0,0c0.6-0.1,1.2-0.5,1.5-1.1v0C309.9,240.6,311.9,240.6,312.6,242.1z"/>
+ <path class="conf8" id="yellow-strip" d="M290.7,215.4c0,0-14.4-3.4-22.6,2.7c-8.2,6.2-8.2,23.3-17.1,29.4c-8.9,6.2-19.8-2.7-32.2-4.1
+   c-12.3-1.4-19.2,5.5-20.5,10.9"/>
+</g>
+</svg>
     </body>
 </html>

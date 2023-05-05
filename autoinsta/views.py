@@ -62,7 +62,7 @@ def home(request):
             friends_list = [i.strip() for i in friends_list]
             friends_list.append("Instagram User")
             friends_list.append(",")
-
+            global block_list
             # friends_list = form.data['friends_list'].split(",").append("Instagram User")
             print(friends_list)
 
@@ -115,43 +115,59 @@ def home(request):
             ele = driver.find_elements("xpath","*//span/div/div/span")
 
             count = 0
+            block_list = []
 
-            for i in ele:
+            for i in range(len(ele)):
+                ele = driver.find_elements("xpath", "*//span/div/div/span")
                 # count+=1
                 # if count ==3:
                 time.sleep(1)
                 try:
-                    WebDriverWait(driver, 50,ignored_exceptions=ignored_exceptions).until(EC.element_to_be_clickable(i) or EC.element_to_be_selected(i))
-                    print(i.text)
+                    WebDriverWait(driver, 50,ignored_exceptions=ignored_exceptions).until(EC.element_to_be_clickable(ele[i]) or EC.element_to_be_selected(ele[i]))
+                    print(ele[i].text)
                 except:
-                    pass 
-                if i.is_displayed and i.is_enabled:
-                    name = i.text
-                print("name "+ i.text)
+                    pass
+                if ele[i].is_displayed and ele[i].is_enabled:
+                    name = ele[i].text
+                print("name "+ ele[i].text)
                 if name in friends_list:
                     continue
                 time.sleep(1)
-                if i.is_enabled:
-                    i.click()
-                time.sleep(10)    
+                if ele[i].is_enabled:
+                    ele[i].click()
+
+                try:
+                    element_text = WebDriverWait(driver, 10).until(
+                        EC.visibility_of_element_located((By.XPATH, '*//div/span[contains(text(),"Someone")]')))
+                    element = WebDriverWait(driver, 30).until(
+                        EC.element_to_be_clickable((By.XPATH, '//button[contains(text(),"Stay")]')))
+
+                    driver.execute_script("arguments[0].click();", element)
+                except:
+                    pass
+
+
+                time.sleep(10)
                 ele_mess = driver.find_elements("xpath","//*[contains(@class, '_aacl _aaco _aacu _aacx _aad9 _aadf')]")
                 data = " "
-                for j in ele_mess:
+                for j in range(len(ele_mess)):
+                    ele_mess = driver.find_elements("xpath",
+                                                    "//*[contains(@class, '_aacl _aaco _aacu _aacx _aad9 _aadf')]")
+
                     time.sleep(0.5)
 
                     # WebDriverWait(browser, 20).until(EC.presence_of_element_located((By.CSS_SELECTOR, ".reply-button"))).click()
 
                     # mes = WebDriverWait(driver, 20).until(EC.presence_of_element_located(j))
                     # b = WebDriverWait(driver, 30).until(EC.presence_of_element_located(j))
-                    if j.is_displayed:
-                        WebDriverWait(driver, 30,ignored_exceptions=ignored_exceptions).until(EC.element_to_be_clickable(j))
-                        data+=j.text
+                    if ele_mess[j].is_displayed:
+                        WebDriverWait(driver, 30,ignored_exceptions=ignored_exceptions).until(EC.element_to_be_clickable(ele_mess[j]))
+                        data+=ele_mess[j].text
                     # print(data)
                     time.sleep(0.5)
-
+                print("data: -", data)
                 x = profanity.contains_profanity(data)
                 if x:
-
                     try:
                         WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.XPATH, '//div[@class="_abm0"]/*[name()="svg"][@aria-label="View Thread Details"]'))).click()
                         time.sleep(2)
@@ -164,13 +180,13 @@ def home(request):
                         WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.XPATH, "*//button[contains(text(),'Block')]" ))).click()
                         # driver.execute_script("arguments[0].click();", element)
                         time.sleep(2)
+                        block_list.append(ele[i].text)
+                        print(block_list)
+
                     except:
                         pass
-
-
             driver.close()
-
-            return render(request, "home.html")
+    return render(request, "home.html") 
         
-        # madarauchiha_1702
-        # @Madarauchiha1
+    
+ 
