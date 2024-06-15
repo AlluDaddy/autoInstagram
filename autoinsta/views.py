@@ -47,6 +47,10 @@ def process(request:HttpRequest):
 
 def home(request):
     print(2+3)
+    global block_list
+
+    block_list = []
+
 
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
@@ -62,13 +66,12 @@ def home(request):
             friends_list = [i.strip() for i in friends_list]
             friends_list.append("Instagram User")
             friends_list.append(",")
-            global block_list
             # friends_list = form.data['friends_list'].split(",").append("Instagram User")
             print(friends_list)
 
             options = webdriver.ChromeOptions()
             options.add_experimental_option('excludeSwitches', ['enable-logging'])
-            driver = webdriver.Chrome(ChromeDriverManager().install())
+            driver = webdriver.Chrome()
             # driver_path = 'D:\Download(D)\chromedriver_win32\chromedriver.exe'
             # driver = webdriver.Chrome(options=options, executable_path=driver_path)
             driver.get("https://www.instagram.com/")
@@ -83,7 +86,7 @@ def home(request):
             ele.click()
             time.sleep(5)
             try:
-                element = WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.XPATH, '*//div[contains(text(),"Not Now")]' )))
+                element = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '*//div[contains(text(),"Not now")]')))
                 # if element:
                 # if driver.find_element_by_xpath("//*/section/main/div/div/div/div/button"):
                 #     not_btn = driver.find_element_by_xpath("//*/section/main/div/div/div/div/button")
@@ -91,102 +94,122 @@ def home(request):
                     # not_btn = driver.find_element_by_xpath('*//button[contains(text(),"Not Now")]')
                 driver.execute_script("arguments[0].click();", element)
             except:
-                assert False, "Failed"
-                # pass
+                # assert False, "Failed"
+                driver.refresh()
+                pass
             # print("56789098765")
             # driver.close()
             time.sleep(5)
             try:
                 print("TRY 1")
-                element = WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, '*//button[contains(text(),"Not Now")]' )))
+                element = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '*//button[contains(text(),"Not Now")]' )))
                 print("1. ",element)
                 driver.execute_script("arguments[0].click();", element)
                 print("CLICKED")
             except:
-                assert False, "Failed"
-                # pass
+                # assert False, "Failed"
+                driver.refresh()
+                pass
 
-            time.sleep(10)
-            element = WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.XPATH, "//*[@class='xh8yej3 x1iyjqo2']/div[5]" )))
-            message_icon = driver.find_element("xpath","//*[@class='xh8yej3 x1iyjqo2']/div[5]")
+
+            
+            element = WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.XPATH, "*//span[text()='Messages']")))
+            message_icon = driver.find_element("xpath","*//span[text()='Messages']")
             message_icon.click()
-            time.sleep(10)
+            # element = WebDriverWait(driver, 30).until(EC.elements_to_be_clickable(By.XPATH,"*//span/div/div/span"))
             # ele = driver.find_elements("xpath","//*/section/div/div/div/div/div[1]/div[2]/div/div/div/div/div")[0:]
-            ele = driver.find_elements("xpath","*//span/div/div/span")
+            # ele = driver.find_elements("xpath","*//span/div/div/span")
 
-            count = 0
-            block_list = []
+            count = -1
+            while True:
+            # for i in range(len(element)):
+                # ele = driver.find_elements("xpath", "*//span/div/div/span")
+                time.sleep(5)
+                ele = driver.find_elements("xpath", "*//div[@role='listitem']")
+                count+=1
+                if count==len(ele):
+                    break
+                
+                print("COunt1 -", count)
+                # print(ele)
 
-            for i in range(len(ele)):
-                ele = driver.find_elements("xpath", "*//span/div/div/span")
-                # count+=1
-                # if count ==3:
+                # for i in ele:
+                #     print(i.text)
+
                 time.sleep(1)
                 try:
-                    WebDriverWait(driver, 50,ignored_exceptions=ignored_exceptions).until(EC.element_to_be_clickable(ele[i]) or EC.element_to_be_selected(ele[i]))
-                    print(ele[i].text)
+                    WebDriverWait(driver, 50,ignored_exceptions=ignored_exceptions).until(EC.element_to_be_clickable(ele[count]) or EC.element_to_be_selected(ele[count]))
+                    print(ele[count].text)
                 except:
                     pass
-                if ele[i].is_displayed and ele[i].is_enabled:
-                    name = ele[i].text
-                print("name "+ ele[i].text)
+                print("COunt2 -", count)
+
+                if ele[count].is_displayed and ele[count].is_enabled:
+                    name = ele[count].text
+                print("name "+ ele[count].text)
                 if name in friends_list:
                     continue
                 time.sleep(1)
-                if ele[i].is_enabled:
-                    ele[i].click()
+                if ele[count].is_enabled:
+                    ele[count].click()
 
+# ?????????????????????????????????? Might be already blocked contact
                 try:
-                    element_text = WebDriverWait(driver, 10).until(
-                        EC.visibility_of_element_located((By.XPATH, '*//div/span[contains(text(),"Someone")]')))
-                    element = WebDriverWait(driver, 30).until(
-                        EC.element_to_be_clickable((By.XPATH, '//button[contains(text(),"Stay")]')))
+                    WebDriverWait(driver, 10).until(
+                        EC.visibility_of_element_located((By.XPATH, '*//div[text()="Unblock"]')))
+                    print("-----------> already blocked")
+                    continue
 
-                    driver.execute_script("arguments[0].click();", element)
+
+                    # element = WebDriverWait(driver, 30).until(
+                    #     EC.element_to_be_clickable((By.XPATH, '//button[contains(text(),"Stay")]')))
+
+                    # driver.execute_script("arguments[0].click();", element)
                 except:
                     pass
 
-
                 time.sleep(10)
-                ele_mess = driver.find_elements("xpath","//*[contains(@class, '_aacl _aaco _aacu _aacx _aad9 _aadf')]")
+                # ele_mess = driver.find_elements("xpath","//*[contains(@class, '_aacl _aaco _aacu _aacx _aad9 _aadf')]")
+                ele_mess = driver.find_elements("xpath","*//div[@role='presentation']/span/div")
                 data = " "
                 for j in range(len(ele_mess)):
                     ele_mess = driver.find_elements("xpath",
-                                                    "//*[contains(@class, '_aacl _aaco _aacu _aacx _aad9 _aadf')]")
-
+                                                    "*//div[@role='presentation']/span/div")
                     time.sleep(0.5)
-
                     # WebDriverWait(browser, 20).until(EC.presence_of_element_located((By.CSS_SELECTOR, ".reply-button"))).click()
 
                     # mes = WebDriverWait(driver, 20).until(EC.presence_of_element_located(j))
                     # b = WebDriverWait(driver, 30).until(EC.presence_of_element_located(j))
                     if ele_mess[j].is_displayed:
                         WebDriverWait(driver, 30,ignored_exceptions=ignored_exceptions).until(EC.element_to_be_clickable(ele_mess[j]))
-                        data+=ele_mess[j].text
+                        data+= f" {ele_mess[j].text} " 
                     # print(data)
                     time.sleep(0.5)
                 print("data: -", data)
                 x = profanity.contains_profanity(data)
                 if x:
                     try:
-                        WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.XPATH, '//div[@class="_abm0"]/*[name()="svg"][@aria-label="View Thread Details"]'))).click()
+                        # WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.XPATH, '//div[@class="_abm0"]/*[name()="svg"][@aria-label="View Thread Details"]'))).click()
+                        WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.XPATH, '*//div//*[@aria-label="Conversation information"]'))).click()
                         time.sleep(2)
                         # driver.execute_script("arguments[0].click();", element)
-                        WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.XPATH, "*//div[contains(text(),'Block')]" ))).click()
+                        WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.XPATH, "*//div/span[text()='Block']" ))).click()
 
                         time.sleep(2)
 
-                        # driver.execute_script("arguments[0].click();", element)
-                        WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.XPATH, "*//button[contains(text(),'Block')]" ))).click()
-                        # driver.execute_script("arguments[0].click();", element)
-                        time.sleep(2)
-                        block_list.append(ele[i].text)
+                        # # driver.execute_script("arguments[0].click();", element)
+                        WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.XPATH, "*//div/button[text()='Block']" ))).click()
+                        # driver.execute_script("arguments[0].click();", element) 
+                        # time.sleep(2)
+                        block_list.append(ele[count].text)
                         print(block_list)
 
                     except:
                         pass
-            driver.close()
-    return render(request, "home.html") 
+        driver.close()
+    return render(request, "home.html", context={"block_list": block_list}) 
         
     
  
+
+#  can add censor words and can adjust threshold to find offensive sentences
