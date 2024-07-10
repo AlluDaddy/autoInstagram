@@ -51,7 +51,6 @@ def home(request):
 
     block_list = []
 
-
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
         form = LoginForm(request.POST)
@@ -68,7 +67,7 @@ def home(request):
             friends_list.append(",")
             # friends_list = form.data['friends_list'].split(",").append("Instagram User")
             print(friends_list)
-
+#selenium starts
             options = webdriver.ChromeOptions()
             options.add_experimental_option('excludeSwitches', ['enable-logging'])
             driver = webdriver.Chrome()
@@ -99,7 +98,7 @@ def home(request):
                 pass
             # print("56789098765")
             # driver.close()
-            time.sleep(5)
+            time.sleep(3)
             try:
                 print("TRY 1")
                 element = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '*//button[contains(text(),"Not Now")]' )))
@@ -112,7 +111,7 @@ def home(request):
                 pass
 
 
-            
+            print(2)
             element = WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.XPATH, "*//span[text()='Messages']")))
             message_icon = driver.find_element("xpath","*//span[text()='Messages']")
             message_icon.click()
@@ -125,7 +124,8 @@ def home(request):
             # for i in range(len(element)):
                 # ele = driver.find_elements("xpath", "*//span/div/div/span")
                 time.sleep(5)
-                ele = driver.find_elements("xpath", "*//div[@role='listitem']")
+                # ele = driver.find_elements("xpath", "*//div[@role='listitem']")
+                ele = driver.find_elements("xpath", "*//div[@role='listitem']//*//div[2]/div")
                 count+=1
                 if count==len(ele):
                     break
@@ -140,14 +140,20 @@ def home(request):
                 try:
                     WebDriverWait(driver, 50,ignored_exceptions=ignored_exceptions).until(EC.element_to_be_clickable(ele[count]) or EC.element_to_be_selected(ele[count]))
                     print(ele[count].text)
+                    entire_text = ele[count].text
+                    lines = entire_text.split('\n')
+                    # Strip leading and trailing spaces from the first line
+                    first_line = lines[0].strip()
+                    print(first_line)
                 except:
                     pass
                 print("COunt2 -", count)
 
-                if ele[count].is_displayed and ele[count].is_enabled:
-                    name = ele[count].text
-                print("name "+ ele[count].text)
-                if name in friends_list:
+                # if ele[count].is_displayed and ele[count].is_enabled:
+                    # name = ele[count].text
+                print("name ---->"+ first_line)
+                if first_line in friends_list:
+                    print(f"This user is a friend {first_line}")
                     continue
                 time.sleep(1)
                 if ele[count].is_enabled:
